@@ -1,0 +1,50 @@
+import viajesYClaseDeGimnasia.*
+import socios.*
+
+describe "Test de socios que realizan actividades"{
+	
+	/*Socios */
+	const roque = new SocioTranquilo(maximoDeActividadesQuePuedeRealizar = 2, edad= 30)
+	const ana = new SocioCoherente(maximoDeActividadesQuePuedeRealizar = 3, edad= 25)
+	
+	/*Viajes y/o clases de gimnasia */
+	
+	const viajeDePlaya1 = new ViajeDePlaya(largoDeLaPlaya = 1000)
+	const viajeDePlaya2 = new ViajeDePlaya(largoDeLaPlaya = 2000)
+	const claseDeGimnasia = new ClaseDeGimnasia()
+	
+	test "Comrpobando que Roque es adorador de sol y que la actividad reforzada sea viajeDePlaya2 y que le atrae la misma"{
+		roque.registrarActividadRealizada(viajeDePlaya1)
+		roque.registrarActividadRealizada(viajeDePlaya2)
+		
+		assert.that(roque.esAdoradorDelSol())
+		assert.equals([viajeDePlaya2], roque.actividadesReforzadas())
+		assert.that(roque.leAtrae(viajeDePlaya2))
+	}
+	
+	test "viajeDePlaya2 es recomendada para Roque"{
+		viajeDePlaya2.agregarIdioma("español")
+		viajeDePlaya2.agregarIdioma("ingles")
+		assert.that(viajeDePlaya2.esRecomendada(roque))
+	}
+	
+	test "Tira error cuando Roque trate de realizar una 3ra actividad cuando el maximo es 2"{
+		roque.registrarActividadRealizada(viajeDePlaya1)
+		roque.registrarActividadRealizada(viajeDePlaya2)
+		roque.registrarActividadRealizada(claseDeGimnasia)
+		
+		assert.throwsException(roque.actividadesRealizadas())
+	}
+	test "No tira error cuando anna realiza 3 actividades porque el maximo de los que puede hacer es 3"{
+		ana.registrarActividadRealizada(viajeDePlaya1)
+		ana.registrarActividadRealizada(viajeDePlaya2)
+		ana.registrarActividadRealizada(claseDeGimnasia)
+		
+		assert.throwsException(ana.actividadesRealizadas())
+	}
+	test "A ana le atrae la actividad viajeDePlaya1 y es recomendada"{
+		ana.registrarActividadRealizada(viajeDePlaya2)
+		assert.that(ana.leAtrae(viajeDePlaya2))
+	}
+	
+}

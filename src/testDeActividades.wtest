@@ -1,0 +1,93 @@
+import viajesYClaseDeGimnasia.*
+
+describe "Test de viajes"{
+	/*Viajes a playa */
+	const viajeDePlaya1 = new ViajeDePlaya(largoDeLaPlaya = 30000)
+	const viajeDePlaya2 = new ViajeDePlaya(largoDeLaPlaya = 1000)
+	
+	/*Viajes de excursion a ciudad y tropical */
+	const excursionDeCiudad1 = new ExcursionDeCiudad(cantidadDeAtraccionesAVisitar = 4)
+	
+	const excursionTropical1 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 4)
+	
+	const excursionDeCiudad2 = new ExcursionDeCiudad(cantidadDeAtraccionesAVisitar = 8)
+	
+	const excursionTropical2 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 8)
+	
+	const excursionTropical3 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 10)
+	
+	const excursionTropical4 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 5)
+	
+	/*Salidas de trekking */
+	
+	const salidaDeTrekking1 = new SalidaDeTrekking(kilometrosDeSenderoARecorrer = 100, diasDeSolPorAnio = 130)
+	
+	const salidaDeTrekking2 = new SalidaDeTrekking(kilometrosDeSenderoARecorrer = 50, diasDeSolPorAnio = 240)
+	
+	const salidaDeTrekking3 = new SalidaDeTrekking(kilometrosDeSenderoARecorrer = 250, diasDeSolPorAnio = 130)
+	
+	test "Comprobando los metodos de viajeDePlaya1 de cantidad de dias y si implica esfuerzo y si es interesante"{
+		viajeDePlaya1.agregarIdioma("italiano")
+		viajeDePlaya1.agregarIdioma("ingles")
+		assert.equals(60, viajeDePlaya1.cantidadDeDias())
+		assert.that(viajeDePlaya1.implicaEsfuerzo())
+		assert.that(viajeDePlaya1.esInteresante())
+	}
+	
+	test "Comprobando los metodos de viajeDePlaya2 de cantidad de dias y si implica esfuerzo"{
+		assert.equals(2, viajeDePlaya2.cantidadDeDias())
+		assert.notThat(viajeDePlaya2.implicaEsfuerzo())
+	}
+	
+	test "Comprobando los metodos de excursionDeCiudad1 visitan 4 atracciones, lleva 2 días, no implica esfuerzo, y no sirve para broncearse"{
+		assert.equals(2, excursionDeCiudad1.cantidadDeDias())
+		assert.notThat(excursionDeCiudad1.implicaEsfuerzo())
+		assert.notThat(excursionDeCiudad1.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de excursionTropical1 visitan 4 atracciones, lleva 3 días, no implica esfuerzo, y sí sirve para broncearse"{
+		assert.equals(3, excursionTropical1.cantidadDeDias())
+		assert.notThat(excursionTropical1.implicaEsfuerzo())
+		assert.that(excursionTropical1.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de excursionDeCiudad2 visitan 8 atracciones, lleva 4 días, implica esfuerzo, y no sirve para broncearse"{
+		assert.equals(4, excursionDeCiudad2.cantidadDeDias())
+		assert.that(excursionDeCiudad2.implicaEsfuerzo())
+		assert.notThat(excursionDeCiudad2.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de excursionTropical2 visitan 8 atracciones, lleva 5 días, implica esfuerzo, y sirve para broncearse y si es interesante"{
+		assert.equals(5, excursionTropical2.cantidadDeDias())
+		assert.that(excursionTropical2.implicaEsfuerzo())
+		assert.that(excursionTropical2.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de excursionTropical3 visitan 10 atracciones, lleva 6 días, no implica esfuerzo, y sí sirve para broncearse"{
+		assert.equals(6, excursionTropical3.cantidadDeDias())
+		assert.notThat(excursionTropical3.implicaEsfuerzo())
+		assert.that(excursionTropical3.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de salidaDeTrekking1 lleva 2 días, implica esfuerzo, y no sirve para broncearse"{
+		assert.equals(2, salidaDeTrekking1.cantidadDeDias())
+		assert.that(salidaDeTrekking1.implicaEsfuerzo())
+		assert.notThat(salidaDeTrekking1.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de salidaDeTrekking2 lleva 1 día, no implica esfuerzo, y sí sirve para broncearse"{
+		assert.equals(1, salidaDeTrekking2.cantidadDeDias())
+		assert.notThat(salidaDeTrekking2.implicaEsfuerzo())
+		assert.that(salidaDeTrekking2.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de salidaDeTrekking3 lleva 5 días, implica esfuerzo, y sirve para broncearse"{
+		assert.equals(5, salidaDeTrekking3.cantidadDeDias())
+		assert.that(salidaDeTrekking3.implicaEsfuerzo())
+		assert.that(salidaDeTrekking3.sirveParaBroncearse())
+	}
+	
+	test "Comprobando los metodos de excursionTropical4 es un viaje interesante"{
+		assert.that(excursionTropical4.esInteresante())
+	}
+}
